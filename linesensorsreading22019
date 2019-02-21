@@ -1,0 +1,27 @@
+#include <Arduino.h>
+
+int linePin1 = 18;
+int linePin2 = 17;
+int linePin3 = 16;
+int linePin4 = 15;
+
+void setup() {
+  // put your setup code here, to run once:
+  Serial.begin(9600);
+  while(!Serial);
+  pinMode(linePin1,INPUT);
+  pinMode(linePin2,INPUT);
+  pinMode(linePin3, INPUT);
+  pinMode(linePin4, INPUT);
+}
+
+void loop() {
+  int reading1 = analogRead(linePin1);
+  int reading2 = analogRead(linePin2);
+  int reading3 = analogRead(linePin3);
+  int reading4 = analogRead(linePin4);
+  Serial.println(reading1);
+  Serial.println(reading2);
+  Serial.println(reading3);
+  Serial.println(reading4);
+}
