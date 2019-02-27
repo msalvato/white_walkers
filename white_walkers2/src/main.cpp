@@ -1,14 +1,14 @@
 #include <Arduino.h>
 
 int potPin = 20;
-int dirPinLeft = 8;
-int enablePinLeft = 9;
-int dirPinRight = 17;
-int enablePinRight = 16;
-int sensorPinIn = 18;
-int potRead = 128;
-uint16_t dirPinStateLeft = 0;
-uint16_t dirPinStateRight = 0;
+int dirPinLeft = 5;
+int enablePinLeft = 4;
+int dirPinRight = 2;
+int enablePinRight = 3;
+int sensorPinIn = 19;
+int motorSpeed = 0;
+uint16_t dirPinStateLeft = HIGH;
+uint16_t dirPinStateRight = LOW;
 
 void TestForKey(void);
 
@@ -23,18 +23,18 @@ void setup() {
   pinMode(enablePinLeft, OUTPUT);
   pinMode(enablePinRight, OUTPUT);
   pinMode(sensorPinIn, INPUT);
-  digitalWrite(dirPinLeft,HIGH);
-  digitalWrite(dirPinRight,HIGH);
+  digitalWrite(dirPinLeft,dirPinStateLeft);
+  digitalWrite(dirPinRight,dirPinStateRight);
 }
 
 void loop() {
 // put your main code here, to run repeatedly:
-//potRead = analogRead(potPin);
-//potRead = map(potRead, 0, 1023, 0, 255);
-//analogWrite(enablePinLeft, potRead);
-//analogWrite(enablePinRight, potRead);
-Serial.println(analogRead(sensorPinIn));
-delay(500);
+analogWrite(enablePinLeft, motorSpeed);
+analogWrite(enablePinRight, motorSpeed);
+//Serial.println("hi");
+delay(100);
+Serial.println(analogRead(sensorPinIn)); //This and line below only test
+//delay(500);
 //TestForKey();
 }
 
