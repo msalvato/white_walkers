@@ -92,8 +92,6 @@ int AlignLauncher::checkCrossedCross() {
     }
     if (aligned_count > 9) {
         crossed_cross = 1;
-        this->front_motor.setSpeed(0);
-        this->back_motor.setSpeed(0);
     }
     Serial.println(aligned_count);
     return crossed_cross;

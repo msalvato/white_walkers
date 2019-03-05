@@ -39,19 +39,25 @@ void StateMachine::machineLoop() {
             }
             if (load_timer.check()){
                 this->current_state = tokings;
+                ignore_blue_tape.reset();
             }
             break;
         case tokings:
             this->to_kings.drive();
-            // if (align_kings.checkCrossedCross()) {
-            //     this->current_state = aligningkings;
-            //     align_kings.crossed_cross = 0;
-            //     align_kings.activate(0);
-            // }
+            if (ignore_blue_tape.check()){
+
+            }
+            if (align_kings.checkCrossedCross()) {
+                this->current_state = launching;
+                this->right_motor.setSpeed(0);
+                this->left_motor.setSpeed(0);
+            }
             break;
         case aligningkings:
             //align_kings.alignWithCross(to_kings, to_armory);
             break;
+        case launching:
+            
         
     }
 }

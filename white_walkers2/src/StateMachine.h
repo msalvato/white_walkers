@@ -38,6 +38,7 @@ private:
   Motor left_motor, right_motor;
   Metro lever_timer = Metro(3000);
   Metro load_timer = Metro(5000);
+  Metro ignore_blue_tape = Metro(5000);
   
 };
 
