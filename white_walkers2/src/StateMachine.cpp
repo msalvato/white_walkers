@@ -23,7 +23,6 @@ void StateMachine::machineLoop() {
             if (this->bump_sensor.checkSensor()){
                 this->current_state = hitbump;
                 lever_timer.reset();
-
                 left_motor.setSpeed(-150);
             }
             break;
