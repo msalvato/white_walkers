@@ -57,7 +57,7 @@ void StateMachine::machineLoop() {
             //align_kings.alignWithCross(to_kings, to_armory);
             break;
         case launching:
-            
+            break;
         
     }
 }
