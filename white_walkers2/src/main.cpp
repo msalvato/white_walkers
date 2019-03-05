@@ -18,7 +18,7 @@ Sensor bb_sensor = Sensor(18);
 Sensor bw_sensor = Sensor(19);
 Sensor l_align_sensor = Sensor(14);
 Sensor r_align_sensor = Sensor(15);
-BumpSensor bump_sensor = BumpSensor(20);
+BumpSensor bump_sensor = BumpSensor(23);
 
 
 LineFollow to_armory;
@@ -33,27 +33,33 @@ float KP = .2;
 IntervalTimer armory_timer;
 
 void driveToArmory();
-int limitpin = 20;
 void setup() {
   // put your setup code here, to run once:
-  Serial.begin(9600);
-  while(!Serial);
-  Serial.println("hello");
+  // Serial.begin(9600);
+  // while(!Serial);
+  // Serial.println("hello");
   left_motor = Motor(enablePinLeft, dirPinLeft, -1);
   right_motor = Motor(enablePinRight, dirPinRight, 1);
-  left_motor.setSpeed(0);
-  right_motor.setSpeed(0);
-  delay(5000);
-  Serial.println("too late");
-  to_armory = LineFollow(left_motor, right_motor, fw_sensor, fb_sensor, 150, 1);
-  to_kings = LineFollow(left_motor, right_motor, bw_sensor, bb_sensor, 150, -1);
-  align_kings = AlignLauncher(right_motor, left_motor, l_align_sensor, r_align_sensor, 1, 10);
-  state_machine = StateMachine(to_armory, to_kings, align_kings, bump_sensor, left_motor, right_motor);
+  left_motor.setSpeed(150);
+  right_motor.setSpeed(150);
+  //pinMode(enablePinLeft, OUTPUT);
+  //pinMode(dirPinLeft, OUTPUT);
+  // delay(5000);
+  // Serial.println("too late");
+  // to_armory = LineFollow(left_motor, right_motor, fw_sensor, fb_sensor, 150, 1);
+  // to_kings = LineFollow(left_motor, right_motor, bw_sensor, bb_sensor, 150, -1);
+  // align_kings = AlignLauncher(right_motor, left_motor, l_align_sensor, r_align_sensor, 1, 10);
+  // state_machine = StateMachine(to_armory, to_kings, align_kings, bump_sensor, left_motor, right_motor);
+  
 }
 
 void loop() {
+//analogWrite(4,150);
 // put your main code here, to run repeatedly:
-state_machine.machineLoop();
+//state_machine.machineLoop();
+left_motor.setSpeed(150);
+right_motor.setSpeed(150);
+//digitalWrite(dirPinLeft, HIGH);
 }
 
 
