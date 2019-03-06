@@ -12,8 +12,10 @@ OurServo::OurServo() {
 
 }
 
-OurServo::OurServo(int servo_pin) {
+OurServo::OurServo(int servo_pin, int updateDelay, int maxAng) {
     this->myservo.attach(servo_pin);
+    this->updateDelay = updateDelay;
+    this->maxAng = maxAng;
     myservo.write(0);
 }
 
@@ -38,7 +40,7 @@ void OurServo::resetServo() {
 
 void OurServo::updateDelayExp(){
   // Starting timer to pause motor at the end to give time to get there
-  if ((pos == maxAng || pos == 0) && end == 0 && count != maxRev){
+  if ((pos == maxAng || pos == 0) && end == 0){// && count != maxRev){
     this->changeDirExp();
   }
 
@@ -48,9 +50,9 @@ void OurServo::updateDelayExp(){
   }
 
   // Stopping motor when it reaches the number of desired cycles
-  if (count == maxRev){
-    pos = 0;
-  } 
+  // if (count == maxRev){
+  //   pos = 0;
+  // } 
   
   // Counting the number of cycles done
   if (pos == 1){

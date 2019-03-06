@@ -19,7 +19,8 @@ Sensor bw_sensor = Sensor(19);
 Sensor l_align_sensor = Sensor(14);
 Sensor r_align_sensor = Sensor(15);
 BumpSensor bump_sensor = BumpSensor(23);
-OurServo servo = OurServo(7);
+OurServo servo = OurServo(7, 20, 160);
+OurServo gate = OurServo(8,5,45);
 
 
 LineFollow to_armory;
@@ -36,20 +37,20 @@ IntervalTimer armory_timer;
 void driveToArmory();
 void setup() {
   // put your setup code here, to run once:
-  Serial.begin(9600);
-  while(!Serial);
-  Serial.println("hello");
+  //Serial.begin(9600);
+  //while(!Serial);
+  //Serial.println("hello");
   left_motor = Motor(enablePinLeft, dirPinLeft, -1);
   right_motor = Motor(enablePinRight, dirPinRight, 1);
   left_motor.setSpeed(0);
   right_motor.setSpeed(0);
   delay(5000);
-  Serial.println("too late");
+  //Serial.println("too late");
   to_armory = LineFollow(left_motor, right_motor, fw_sensor, fb_sensor, 150, 1);
   to_kings = LineFollow(left_motor, right_motor, bw_sensor, bb_sensor, 150, -1);
   align_kings = AlignLauncher(right_motor, left_motor, l_align_sensor, r_align_sensor, 1, 10);
-  state_machine = StateMachine(to_armory, to_kings, align_kings, bump_sensor, left_motor, right_motor, servo);
-  //state_machine.setStart(loadballs);
+  state_machine = StateMachine(to_armory, to_kings, align_kings, bump_sensor, left_motor, right_motor, servo, gate);
+  state_machine.setStart(launching);
 }
 
 void loop() {

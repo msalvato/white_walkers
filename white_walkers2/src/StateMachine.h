@@ -17,7 +17,8 @@ enum State {
     loadballs,
     tokings,
     aligningkings,
-    launching
+    launching,
+    resetgate,
 };
 
 class StateMachine
@@ -25,7 +26,7 @@ class StateMachine
 
 public:
   StateMachine();
-  StateMachine(LineFollow to_armory, LineFollow to_kings, AlignLauncher align_kings, BumpSensor bump_sensor, Motor left_motor, Motor right_motor, OurServo servo);
+  StateMachine(LineFollow to_armory, LineFollow to_kings, AlignLauncher align_kings, BumpSensor bump_sensor, Motor left_motor, Motor right_motor, OurServo servo, OurServo gate);
   void machineLoop();
   void setStart(State start_state);
   State current_state = toarmory;
@@ -38,10 +39,13 @@ private:
   BumpSensor bump_sensor;
   Motor left_motor, right_motor;
   Metro lever_timer = Metro(6000);
-  Metro load_timer = Metro(5000);
-  Metro ignore_blue_tape = Metro(5000);
+  Metro load_timer = Metro(6000);
+  Metro ignore_blue_tape = Metro(10000);
   int blue_tape_timer = 0;
+  int servo_current_count = 0;
+  int gate_current_count = 0;
   OurServo servo;
+  OurServo gate;
   
 };
 
