@@ -84,15 +84,8 @@ int AlignLauncher::alignWithCross(LineFollow forward_line, LineFollow backward_l
 }
 
 int AlignLauncher::checkCrossedCross() {
-    if (this->right_sensor.getValue() < this->RIGHT_VALUE - 150) {
-        aligned_count++;
-    }
-    else {
-        aligned_count = 0;
-    }
-    if (aligned_count > 9) {
+    if (this->left_sensor.getValue() < this->LEFT_VALUE - 300) {
         crossed_cross = 1;
     }
-    Serial.println(aligned_count);
     return crossed_cross;
 }

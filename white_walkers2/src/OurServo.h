@@ -19,9 +19,9 @@ public:
 	
 private:
   Metro updateDelay = Metro(20); // How long to wait so that the motor can get there
-  Metro changeDir = Metro(2000); // How long to wait before changing directions
+  //Metro changeDir = Metro(2000); // How long to wait before changing directions
   Servo myservo;
-  int maxRev = 30;
+  int maxRev = 6;
   int maxAng = 160;
   int numCycles = 0;
   int pos = 1;

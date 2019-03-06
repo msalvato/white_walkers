@@ -19,6 +19,7 @@ Sensor bw_sensor = Sensor(19);
 Sensor l_align_sensor = Sensor(14);
 Sensor r_align_sensor = Sensor(15);
 BumpSensor bump_sensor = BumpSensor(23);
+OurServo servo = OurServo(7);
 
 
 LineFollow to_armory;
@@ -44,37 +45,14 @@ void setup() {
   right_motor.setSpeed(0);
   delay(5000);
   Serial.println("too late");
-  to_armory = LineFollow(left_motor, right_motor, fw_sensor, fb_sensor, 200, 1);
-  to_kings = LineFollow(left_motor, right_motor, bw_sensor, bb_sensor, 200, -1);
+  to_armory = LineFollow(left_motor, right_motor, fw_sensor, fb_sensor, 150, 1);
+  to_kings = LineFollow(left_motor, right_motor, bw_sensor, bb_sensor, 150, -1);
   align_kings = AlignLauncher(right_motor, left_motor, l_align_sensor, r_align_sensor, 1, 10);
-  state_machine = StateMachine(to_armory, to_kings, align_kings, bump_sensor, left_motor, right_motor);
-  
+  state_machine = StateMachine(to_armory, to_kings, align_kings, bump_sensor, left_motor, right_motor, servo);
+  //state_machine.setStart(loadballs);
 }
 
 void loop() {
 // put your main code here, to run repeatedly:
 state_machine.machineLoop();
-//left_motor.setSpeed(255);
-//right_motor.setSpeed(255);
 }
-
-
-// // for some reason interval timer won't use a class function so we're doing this annoying thing
-// void driveToArmory() {
-//     int32_t white_error = -(to_armory.white_sensor.getValue() - WHITE_VALUE);
-//     int32_t black_error = to_armory.black_sensor.getValue() - BLACK_VALUE;
-//     // if white error is bigger, we're moving black, slow down white motor
-//     int32_t overall_error = white_error - black_error;
-//     //to_armory.integral += KI*overall_error*to_armory.loop_time;
-//     //int32_t derivative = (KD*(overall_error - to_armory.prior_error))/to_armory.loop_time;
-//     // to_armory.integral + derivative + 
-//     int32_t control_out = KP*overall_error;
-//     to_armory.prior_error = overall_error;
-//     to_armory.white_adjust = -control_out;
-//     to_armory.black_adjust = control_out;
-//     to_armory.white_adjust = constrain(to_armory.white_adjust, -100, 100);
-//     to_armory.black_adjust = constrain(to_armory.black_adjust,-100,100);
-//     to_armory.white_motor.setSpeed(to_armory.base_speed + to_armory.white_adjust);
-//     to_armory.black_motor.setSpeed(to_armory.base_speed + to_armory.black_adjust);
-    
-// }

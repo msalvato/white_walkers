@@ -14,12 +14,12 @@ OurServo::OurServo() {
 
 OurServo::OurServo(int servo_pin) {
     this->myservo.attach(servo_pin);
+    myservo.write(0);
 }
 
 void OurServo::changeDirExp (void){
   this->increment = -this->increment;
   this->pos += this->increment;
-  this->end = 0;
 }
 
 int OurServo::runServo(){
@@ -32,21 +32,15 @@ int OurServo::runServo(){
 void OurServo::resetServo() {
   pos = 1;
   increment = -1;
-  end = 0;
   count = 0;
-  changeDir.reset();
   updateDelay.reset();
 }
 
 void OurServo::updateDelayExp(){
   // Starting timer to pause motor at the end to give time to get there
   if ((pos == maxAng || pos == 0) && end == 0 && count != maxRev){
-    changeDir.reset();
-    end  = 1;
+    this->changeDirExp();
   }
-
-  // Change direction of motor
-  if (this->changeDir.check()) this->changeDirExp();
 
   // Incrementing position of motor
   if (pos < maxAng && pos > 0){
@@ -64,6 +58,6 @@ void OurServo::updateDelayExp(){
   }
 
   myservo.write(pos);
+  
   this->updateDelay.reset();
-  //Serial.println(pos);
 }

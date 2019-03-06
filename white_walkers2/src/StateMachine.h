@@ -9,6 +9,7 @@
 #include "AlignLauncher.h"
 #include "BumpSensor.h"
 #include "Motor.h"
+#include "OurServo.h"
 
 enum State {
     toarmory,
@@ -24,7 +25,7 @@ class StateMachine
 
 public:
   StateMachine();
-  StateMachine(LineFollow to_armory, LineFollow to_kings, AlignLauncher align_kings, BumpSensor bump_sensor, Motor left_motor, Motor right_motor);
+  StateMachine(LineFollow to_armory, LineFollow to_kings, AlignLauncher align_kings, BumpSensor bump_sensor, Motor left_motor, Motor right_motor, OurServo servo);
   void machineLoop();
   void setStart(State start_state);
   State current_state = toarmory;
@@ -36,9 +37,11 @@ private:
   AlignLauncher align_kings;
   BumpSensor bump_sensor;
   Motor left_motor, right_motor;
-  Metro lever_timer = Metro(3000);
+  Metro lever_timer = Metro(6000);
   Metro load_timer = Metro(5000);
   Metro ignore_blue_tape = Metro(5000);
+  int blue_tape_timer = 0;
+  OurServo servo;
   
 };
 
