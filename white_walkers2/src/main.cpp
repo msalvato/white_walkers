@@ -10,8 +10,8 @@ int enablePinRight = 4;
 int dirPinLeft = 2;
 int enablePinLeft = 3;
 
-Motor left_motor;
-Motor right_motor;
+Motor meghan; //left_motor;
+Motor kate; //right_motor;
 Sensor fw_sensor = Sensor(17);
 Sensor fb_sensor = Sensor(16);
 Sensor bb_sensor = Sensor(18);
@@ -19,8 +19,8 @@ Sensor bw_sensor = Sensor(19);
 Sensor l_align_sensor = Sensor(14);
 Sensor r_align_sensor = Sensor(15);
 BumpSensor bump_sensor = BumpSensor(23);
-OurServo servo = OurServo(7, 20, 160);
-OurServo gate = OurServo(8,5,45);
+OurServo william = OurServo(7, 20, 160); // flicker
+OurServo harry = OurServo(8,5,45); // gate
 
 
 LineFollow to_armory;
@@ -40,17 +40,17 @@ void setup() {
   //Serial.begin(9600);
   //while(!Serial);
   //Serial.println("hello");
-  left_motor = Motor(enablePinLeft, dirPinLeft, -1);
-  right_motor = Motor(enablePinRight, dirPinRight, 1);
-  left_motor.setSpeed(0);
-  right_motor.setSpeed(0);
-  delay(5000);
+  meghan = Motor(enablePinLeft, dirPinLeft, -1);
+  kate = Motor(enablePinRight, dirPinRight, 1);
+  meghan.setSpeed(0);
+  kate.setSpeed(0);
+  delay(2000);
   //Serial.println("too late");
-  to_armory = LineFollow(left_motor, right_motor, fw_sensor, fb_sensor, 150, 1);
-  to_kings = LineFollow(left_motor, right_motor, bw_sensor, bb_sensor, 150, -1);
-  align_kings = AlignLauncher(right_motor, left_motor, l_align_sensor, r_align_sensor, 1, 10);
-  state_machine = StateMachine(to_armory, to_kings, align_kings, bump_sensor, left_motor, right_motor, servo, gate);
-  state_machine.setStart(launching);
+  to_armory = LineFollow(meghan, kate, fw_sensor, fb_sensor, 160, 1);
+  to_kings = LineFollow(meghan, kate, bw_sensor, bb_sensor, 160, -1);
+  align_kings = AlignLauncher(kate, meghan, l_align_sensor, r_align_sensor, 1, 10);
+  state_machine = StateMachine(to_armory, to_kings, align_kings, bump_sensor, meghan, kate, william, harry);
+  //state_machine.setStart(launching);
 }
 
 void loop() {

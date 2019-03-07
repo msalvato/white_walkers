@@ -41,9 +41,9 @@ void StateMachine::machineLoop() {
             break;
         case loadballs:
             if (this->bump_sensor.checkSensor()){
-                left_motor.setSpeed(0);
-            }
-            if (load_timer.check()){
+            //     left_motor.setSpeed(0);
+            // }
+            // if (load_timer.check()){
                 this->current_state = tokings;
                 ignore_blue_tape.reset();
                 blue_tape_timer = 0;
@@ -68,7 +68,12 @@ void StateMachine::machineLoop() {
         
         case launching:
             servo_test_count = servo.runServo();
-            if (servo_test_count > servo_current_count) {
+            if (servo_test_count == 2) { //balls to launch minus 1
+                this->current_state = toarmory;
+                servo.resetServo();
+                gate.resetServo();
+            }
+            else if (servo_test_count > servo_current_count) {
                 servo_current_count = servo_test_count;
                 this->current_state = resetgate;
             }

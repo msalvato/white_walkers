@@ -35,6 +35,7 @@ void OurServo::resetServo() {
   pos = 1;
   increment = -1;
   count = 0;
+  this->numCycles = 0;
   updateDelay.reset();
 }
 
