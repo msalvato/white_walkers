@@ -36,7 +36,7 @@ void StateMachine::machineLoop() {
             if (lever_timer.check()) {
                 this->current_state = loadballs;
                 load_timer.reset();
-                left_motor.setSpeed(150);
+                left_motor.setSpeed(200);
             }
             break;
         case loadballs:
@@ -68,7 +68,7 @@ void StateMachine::machineLoop() {
         
         case launching:
             servo_test_count = servo.runServo();
-            if (servo_test_count == 2) { //balls to launch minus 1
+            if (servo_test_count == 4) { //balls to launch minus 1
                 this->current_state = toarmory;
                 servo.resetServo();
                 gate.resetServo();

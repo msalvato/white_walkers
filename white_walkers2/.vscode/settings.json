@@ -2,5 +2,9 @@
     "terminal.integrated.env.osx": {
         "PATH": "/Users/msalvato/.platformio/penv/bin:/Users/msalvato/.platformio/penv:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Applications/VMware Fusion.app/Contents/Public:/Library/TeX/texbin:/opt/X11/bin",
         "PLATFORMIO_CALLER": "vscode"
+    },
+    "terminal.integrated.env.linux": {
+        "PATH": "/home/msalvato/.platformio/penv/bin:/home/msalvato/.platformio/penv:/home/msalvato/bin:/home/msalvato/.local/bin:/home/msalvato/bin:/home/msalvato/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin",
+        "PLATFORMIO_CALLER": "vscode"
     }
 }

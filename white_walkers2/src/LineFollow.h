@@ -26,7 +26,7 @@ public:
 private:
   float KI = 0;
   float KD = 0;
-  float KP = .2;
+  float KP = .6;
 };
 
 #endif

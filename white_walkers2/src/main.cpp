@@ -20,7 +20,7 @@ Sensor l_align_sensor = Sensor(14);
 Sensor r_align_sensor = Sensor(15);
 BumpSensor bump_sensor = BumpSensor(23);
 OurServo william = OurServo(7, 20, 160); // flicker
-OurServo harry = OurServo(8,5,45); // gate
+OurServo harry = OurServo(8,5,55); // gate
 
 
 LineFollow to_armory;
@@ -46,8 +46,8 @@ void setup() {
   kate.setSpeed(0);
   delay(2000);
   //Serial.println("too late");
-  to_armory = LineFollow(meghan, kate, fw_sensor, fb_sensor, 160, 1);
-  to_kings = LineFollow(meghan, kate, bw_sensor, bb_sensor, 160, -1);
+  to_armory = LineFollow(meghan, kate, fw_sensor, fb_sensor, 255, 1);
+  to_kings = LineFollow(meghan, kate, bw_sensor, bb_sensor, 255, -1);
   align_kings = AlignLauncher(kate, meghan, l_align_sensor, r_align_sensor, 1, 10);
   state_machine = StateMachine(to_armory, to_kings, align_kings, bump_sensor, meghan, kate, william, harry);
   //state_machine.setStart(launching);

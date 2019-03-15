@@ -38,7 +38,7 @@ private:
   AlignLauncher align_kings;
   BumpSensor bump_sensor;
   Motor left_motor, right_motor;
-  Metro lever_timer = Metro(6000);
+  Metro lever_timer = Metro(2500);
   Metro load_timer = Metro(5000);
   Metro ignore_blue_tape = Metro(10000);
   int blue_tape_timer = 0;

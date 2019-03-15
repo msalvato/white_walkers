@@ -28,9 +28,10 @@ void LineFollow::drive() {
     this->prior_error = overall_error;
     this->white_adjust = -control_out;
     this->black_adjust = control_out;
-    int constraint_val = (255 - this->base_speed);
-    this->white_adjust = constrain(this->white_adjust, -constraint_val, constraint_val);
-    this->black_adjust = constrain(this->black_adjust,-constraint_val, constraint_val);
+    int constraint_val_low = -this->base_speed;//(255 - this->base_speed);
+    int constraint_val_high = (255 - this->base_speed);
+    this->white_adjust = constrain(this->white_adjust, constraint_val_low, constraint_val_high);
+    this->black_adjust = constrain(this->black_adjust,constraint_val_low, constraint_val_high);
     this->white_motor.setSpeed(this->desired_dir*(this->base_speed + this->white_adjust));
     this->black_motor.setSpeed(this->desired_dir*(this->base_speed + this->black_adjust));
     
