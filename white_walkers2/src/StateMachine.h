@@ -16,7 +16,6 @@ enum State {
     hitbump,
     loadballs,
     tokings,
-    aligningkings,
     launching,
     resetgate,
 };

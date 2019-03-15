@@ -41,9 +41,6 @@ void StateMachine::machineLoop() {
             break;
         case loadballs:
             if (this->bump_sensor.checkSensor()){
-            //     left_motor.setSpeed(0);
-            // }
-            // if (load_timer.check()){
                 this->current_state = tokings;
                 ignore_blue_tape.reset();
                 blue_tape_timer = 0;
@@ -85,11 +82,6 @@ void StateMachine::machineLoop() {
                 this->current_state = launching;
             }
             break;
-        case aligningkings:
-            //align_kings.alignWithCross(to_kings, to_armory);
-            break;
-
-
 
     }
 }

@@ -16,11 +16,7 @@ public:
   // such from the robot
   AlignLauncher(Motor front_motor, Motor back_motor, Sensor left_sensor, Sensor right_sensor, int desired_dir, int32_t error_threshold);
   void initialize();
-  void activate(uint32_t loop_time);
-  void align();
-  int alignmentDir();
   int checkCrossedCross();
-  int alignWithCross(LineFollow forward_line, LineFollow backward_line);
   Motor front_motor, back_motor;
   Sensor left_sensor, right_sensor;
   int32_t desired_dir;

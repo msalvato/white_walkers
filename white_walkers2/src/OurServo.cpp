@@ -49,11 +49,6 @@ void OurServo::updateDelayExp(){
   if (pos < maxAng && pos > 0){
     pos += increment;
   }
-
-  // Stopping motor when it reaches the number of desired cycles
-  // if (count == maxRev){
-  //   pos = 0;
-  // } 
   
   // Counting the number of cycles done
   if (pos == 1){

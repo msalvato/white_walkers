@@ -21,7 +21,6 @@ public:
 private:
   Metro updateDelay = Metro(20); // How long to wait so that the motor can get there
   Servo myservo;
-  //int maxRev = 6;
   int maxAng = 160;
   int numCycles = 0;
   int increment = -1;

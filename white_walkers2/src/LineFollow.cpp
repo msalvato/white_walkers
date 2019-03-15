@@ -21,9 +21,6 @@ void LineFollow::drive() {
     int32_t black_error = this->black_sensor.getValue() - BLACK_VALUE;
     // if white error is bigger, we're moving black, slow down white motor
     int32_t overall_error = white_error - black_error;
-    //this->integral += KI*overall_error*this->loop_time;
-    //int32_t derivative = (KD*(overall_error - this->prior_error))/this->loop_time;
-    // this->integral + derivative + 
     int32_t control_out = KP*overall_error;
     this->prior_error = overall_error;
     this->white_adjust = -control_out;
