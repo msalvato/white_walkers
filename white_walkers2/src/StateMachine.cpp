@@ -36,7 +36,7 @@ void StateMachine::machineLoop() {
             if (lever_timer.check()) {
                 this->current_state = loadballs;
                 load_timer.reset();
-                left_motor.setSpeed(200);
+                left_motor.setSpeed(150);
             }
             break;
         case loadballs:
